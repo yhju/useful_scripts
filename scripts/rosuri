@@ -1,0 +1,4 @@
+#!/bin/bash
+#AUTHOR: Younghun Ju <yhju@yujinrobot.comm>, <yhju83@gmail.com>
+echo "ROS_MASTER_URI: "$ROS_MASTER_URI
+echo "ROS_IP: "$ROS_IP
