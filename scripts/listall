@@ -1,0 +1,28 @@
+#!/bin/bash
+#AUTHOR: Younghun Ju <yhju@yujinrobot.comm>, <yhju83@gmail.com>
+
+if [ -z $1 ]
+then
+  #echo "not exist: "$1
+  find ./ ! \( -path '*/build' -prune -or -path '*/.svn' -prune -or -path '*/.git' -prune \) -name '*'$1'*'
+else 
+  #echo "exist: "$1
+
+  if [ $1 == "d" ]
+  then
+    find ./ ! \( -path '*/build' -prune -or -path '*/.svn' -prune -or -path '*/.git' -prune \) -type d -name '*'$2'*'
+  elif [ $1 == "f" ]
+  then
+    find ./ ! \( -path '*/build' -prune -or -path '*/.svn' -prune -or -path '*/.git' -prune \) -type f -name '*'$2'*'
+  else
+    find ./ ! \( -path '*/bin' -prune -or -path '*/build' -prune -or -path '*/.svn' -prune -or -path '*/.git' -prune \) -name '*'$1'*'
+  fi
+
+fi
+
+#find ./ -type f ! \( -path '*/.svn' -prune \) -and -name '*' -exec grep --color=auto -nH $1 {} \;
+#find ./ ! \( -path '*/.svn' -prune -or -path '*/.git' -prune \) -type f -name '*' -exec grep --color=auto -nH $1 {} \;
+#find ./ ! \( -path '*/build' -prune -or -path '*/.svn' -prune -or -path '*/.git' -prune \) -type f -name '*' -exec grep --color=auto -nH $1 {} \;
+
+
+#find ./ ! \( -path '*/build' -prune -or -path '*/.svn' -prune -or -path '*/.git' -prune \) -type f -name '*'$1'*'
