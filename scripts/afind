@@ -1,6 +1,10 @@
 #~/bin/bash
 #AUTHOR: Younghun Ju <yhju@yujinrobot.comm>, <yhju83@gmail.com>
 
+if [ -z $1 ]; then
+  exit
+fi
+
 #echo $1
 #find ./ -type f ! \( -path '*/.svn' -prune \) -and -name '*' -exec grep --color=auto -nH $1 {} \;
 #find ./ ! \( -path '*/.svn' -prune -or -path '*/.git' -prune \) -type f -name '*' -exec grep --color=auto -nH $1 {} \;
