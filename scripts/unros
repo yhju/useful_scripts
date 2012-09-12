@@ -1,0 +1,20 @@
+#!/bin/bash
+#AUTHOR: Younghun Ju <yhju@yujinrobot.comm>, <yhju83@gmail.com>
+#Incompleted yet
+
+if [ "$0" != "bash" ]; then
+  echo "Usage:"
+  echo "   source $0"
+  echo "   . $0"
+  exit
+fi
+
+#oneliner
+#for VAR in `env | grep ROS | awk 'BEGIN {FS="="} {print $1}'`; do unset $VAR; done
+
+#
+VAR_LIST=`env | grep ROS | awk 'BEGIN {FS="="} {print $1}'`
+for VAR in $VAR_LIST; do
+  unset $VAR
+done
+
