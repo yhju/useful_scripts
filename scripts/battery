@@ -12,7 +12,14 @@ echo Laptop: $RATE%
 
 
 # 2. Robot Battery
+# check for presence of robot
 TOPIC=/mobile_base/sensors/core
+
+if ! rostopic info $TOPIC > /dev/null 2>&1; then
+#echo "robot is not loaded yet."
+  exit
+fi
+
 VAL="$(rostopic echo -n 1 $TOPIC | grep battery | awk '{print $2}')"
 VOLT="$(echo "scale=4; $VAL*0.1" | bc)"
 
