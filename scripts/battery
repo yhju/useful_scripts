@@ -2,8 +2,13 @@
 #AUTHOR: Younghun Ju <yhju@yujinrobot.comm>, <yhju83@gmail.com>
 
 # 1. Laptop Battery
-REMAIN="$(cat /proc/acpi/battery/BAT0/state | grep remaining | awk '{print $3}')"
-FULL="$(cat /proc/acpi/battery/BAT0/info  | grep last | awk '{print $4}')"
+# check for existence of /proc/acpi/battery/BAT? directories
+BAT_PREFIX=/proc/acpi/battery
+if [ -e $BAT_PREFIX/BAT0 ]; then BAT=BAT0; fi
+if [ -e $BAT_PREFIX/BAT1 ]; then BAT=BAT1; fi
+
+REMAIN="$(cat $BAT_PREFIX/$BAT/state | grep remaining | awk '{print $3}')"
+FULL="$(cat $BAT_PREFIX/$BAT/info  | grep last | awk '{print $4}')"
 
 #echo $REMAIN
 #echo $FULL
