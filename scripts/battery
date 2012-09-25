@@ -24,3 +24,8 @@ VAL="$(rostopic echo -n 1 $TOPIC | grep battery | awk '{print $2}')"
 VOLT="$(echo "scale=4; $VAL*0.1" | bc)"
 
 echo Robot: $VOLT'V'
+#ROBOT_FULL=16.4V
+
+#Known Problem:
+#   if $TOPIC is advertised but not published, then
+#   this script will halted.
