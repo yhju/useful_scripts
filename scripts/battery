@@ -2,28 +2,43 @@
 #AUTHOR: Younghun Ju <yhju@yujinrobot.comm>, <yhju83@gmail.com>
 
 # 1. Laptop Battery
-REMAIN="$(cat /proc/acpi/battery/BAT0/state | grep remaining | awk '{print $3}')"
-FULL="$(cat /proc/acpi/battery/BAT0/info  | grep last | awk '{print $4}')"
+# check for existence of /proc/acpi/battery/BAT? directories
+BAT_PREFIX=/proc/acpi/battery
+FOUND=-1
+for idx in `seq 10`; do 
+  if [ -e $BAT_PREFIX/BAT$((idx-1)) ]; then
+    BAT="BAT"$((idx-1))
+    FOUND=0
+    break
+  fi
+done
 
-#echo $REMAIN
-#echo $FULL
-RATE="$(echo "scale=2; 100*$REMAIN/$FULL" | bc)"
-echo Laptop: $RATE%
-
+if [ $FOUND -eq 0 ]; then
+  REMAIN="$(cat $BAT_PREFIX/$BAT/state | grep remaining | awk '{print $3}')"
+  FULL="$(cat $BAT_PREFIX/$BAT/info  | grep last | awk '{print $4}')"
+  
+  #echo $REMAIN
+  #echo $FULL
+  RATE="$(echo "scale=2; 100*$REMAIN/$FULL" | bc)"
+  echo Laptop: $RATE%
+else
+  echo Laptop: Not Present.
+fi
 
 # 2. Robot Battery
 # check for presence of robot
 TOPIC=/mobile_base/sensors/core
 
 if ! rostopic info $TOPIC > /dev/null 2>&1; then
-#echo "robot is not loaded yet."
-  exit
+  #echo "robot is not loaded yet."
+  echo Robot: Not Present.
+else
+  VAL="$(rostopic echo -n 1 $TOPIC | grep battery | awk '{print $2}')"
+  VOLT="$(echo "scale=4; $VAL*0.1" | bc)"
+  echo Robot: $VOLT'V'
 fi
 
-VAL="$(rostopic echo -n 1 $TOPIC | grep battery | awk '{print $2}')"
-VOLT="$(echo "scale=4; $VAL*0.1" | bc)"
 
-echo Robot: $VOLT'V'
 #ROBOT_FULL=16.4V
 
 #Known Problem:
