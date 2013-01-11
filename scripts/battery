@@ -1,5 +1,5 @@
 #!/bin/bash
-#AUTHOR: Younghun Ju <yhju@yujinrobot.comm>, <yhju83@gmail.com>
+#AUTHOR: Younghun Ju <younghoon.ju@rnd.yujinrobot.com>, <yhju83@gmail.com>
 
 # 1. Laptop Battery
 # check for existence of /proc/acpi/battery/BAT? directories

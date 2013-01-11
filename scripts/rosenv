@@ -1,4 +1,4 @@
 #!/bin/bash
-#AUTHOR: Younghun Ju <yhju@yujinrobot.comm>, <yhju83@gmail.com>
+#AUTHOR: Younghun Ju <younghoon.ju@rnd.yujinrobot.com>, <yhju83@gmail.com>
 
 env | grep ROS
