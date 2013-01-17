@@ -1,0 +1,16 @@
+#!/bin/bash
+#AUTHOR: Younghun Ju <younghoon.ju@rnd.yujinrobot.com>, <yhju83@gmail.com>
+
+OUTPUT="apt-get.sh"
+
+if [ -z $1 ]; then
+  echo "Required one argument"
+else
+  echo "#!/bin/bash" > $OUTPUT
+  echo  >> $OUTPUT
+  cat $1 | grep 'apt-get install' | perl -lane 'print "@F[1..$#F]"' >> $OUTPUT
+  chmod +x $OUTPUT
+
+fi
+
+#REF: http://stackoverflow.com/questions/5081916/how-to-print-all-the-columns-after-a-particular-number-using-awk
