@@ -1,17 +1,14 @@
-TO CLONE IT
------------
+###TO CLONE IT###
 
     $ git clone https://github.com/yhju/useful_scripts
 
-TO INSTALL IT
--------------
+###TO INSTALL IT###
 
     $ cd useful_scripts
     $ make install
 
 
-TO UNINSTALL IT
----------------
+###TO UNINSTALL IT###
 
     $ cd useful_scripts
     $ make uninstall
